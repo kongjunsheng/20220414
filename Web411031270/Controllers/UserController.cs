@@ -4,35 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
+using Web411031270.ViewModels;
 
 namespace Web411031270.Controllers
 {
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult SignUp(string name,string account, string password)
+
+        public ActionResult SignUp()
         {
-            if (name.IsNullOrWhiteSpace())
-            { 
-                ViewBag.NameMessage = "請輸入姓名";
-            }
+            return View(new SignUpData());
+        }
 
-            if (account.IsNullOrWhiteSpace())
+        [HttpPost]
+        public ActionResult SignUp(SignUpData data)
+        {
+
+            if (ModelState.IsValid)
             {
-                ViewBag.AccountMessage = "請輸入賬號";
+                data.Message = "註冊成功";
             }
 
-            if (password.IsNullOrWhiteSpace())
-            {
-                ViewBag.PasswordMessage = "請輸入密碼";
-            }
-
-            if (!name.IsNullOrWhiteSpace()&& !account.IsNullOrWhiteSpace()&& !password.IsNullOrWhiteSpace())
-            {
-                ViewBag.Message = "註冊成功";
-            }
-
-            return View();
+            return View(data);
         }
     }
 }
