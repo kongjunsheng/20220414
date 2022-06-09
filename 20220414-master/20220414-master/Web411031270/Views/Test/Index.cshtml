@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@DateTime.Now
+
+@{ 
+    var amount = 100;
+}
+
+<div>@amount</div>
+
+@for (int i = 1; i < 10; i++)
+{
+    <div>@i</div>
+}
